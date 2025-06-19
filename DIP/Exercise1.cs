@@ -30,11 +30,11 @@ namespace DIP
     //implement DIP
     internal interface ILoger
     {
-        public void Log(string log);
+        public void SaveLog(string log);
     }
     internal class FileLogger : ILoger
     {
-        public void Log(string log)
+        public void SaveLog(string log)
         {
             Console.WriteLine(log);
         }
@@ -45,7 +45,7 @@ namespace DIP
 
         public void SaveLog(string msg)
         {
-            logger.Log(msg);
+            logger.SaveLog(msg);
         }
     }
 }
