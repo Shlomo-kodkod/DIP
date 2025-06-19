@@ -6,46 +6,71 @@ using System.Threading.Tasks;
 
 namespace DIP
 {
-
     // not implement DIP
-    //internal class FileLogger
-    //{
-    //    public void LogToFile(string log)
-    //    {
-    //        Console.WriteLine(log);
-    //    }
-    //}
-    //public class MissionController
-    //{
-    //    FileLogger logger = new FileLogger();
 
-    //    public void SaveLog(string msg)
+    //internal class VoiceAnalyzer
+    //{
+    //    public bool Analyzer(string info)
     //    {
-    //        logger.LogToFile(msg);
+    //        return info.Contains("lie");
     //    }
     //}
 
-    //
+    //internal class TerroristInterrogationUnit()
+    //{
+    //    private VoiceAnalyzer voiceCheck = new VoiceAnalyzer();
+
+    //    public void StartInvestigate(string info)
+    //    {
+    //        if (voiceCheck.Analyzer(info))
+    //        {
+    //            Console.WriteLine("He is lie.");
+    //        }
+    //        else
+    //        {
+    //            Console.WriteLine("He is tell the truth.");
+    //        }
+    //    }
+    //}
+
+
 
     //implement DIP
-    internal interface ILoger
+    internal interface ILieDetector
     {
-        public void Log(string log);
+        public bool Analyzer(string info);
     }
-    internal class FileLogger : ILoger
+    internal class VoiceAnalyzer : ILieDetector
     {
-        public void Log(string log)
+        public bool Analyzer(string info)
         {
-            Console.WriteLine(log);
+            return info.Contains("lie");
         }
     }
-    public class MissionController
-    {
-        private ILoger logger;
 
-        public void SaveLog(string msg)
+    internal class ThermalScanner : ILieDetector
+    {
+        public bool Analyzer(string info)
         {
-            logger.Log(msg);
+            return info.Contains("pressure");
         }
     }
+
+    internal class TerroristInterrogationUnit()
+    {
+        private ILieDetector analyze;
+
+        public void StartInvestigate(string info)
+        {
+            if (analyze.Analyzer(info))
+            {
+                Console.WriteLine("He is lie.");
+            }
+            else
+            {
+                Console.WriteLine("He is not lie.");
+            }
+        }
+    }
+
 }
