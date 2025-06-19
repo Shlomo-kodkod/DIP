@@ -8,69 +8,54 @@ namespace DIP
 {
     // not implement DIP
 
-    //internal class VoiceAnalyzer
+    //internal class SirenAlert
     //{
-    //    public bool Analyzer(string info)
+    //    public void Alert()
     //    {
-    //        return info.Contains("lie");
+    //        Console.WriteLine("danger detects");
     //    }
     //}
 
-    //internal class TerroristInterrogationUnit()
+    //internal class BaseDefenseController
     //{
-    //    private VoiceAnalyzer voiceCheck = new VoiceAnalyzer();
+    //    private SirenAlert alert;
 
-    //    public void StartInvestigate(string info)
+    //    public void StartAlert()
     //    {
-    //        if (voiceCheck.Analyzer(info))
-    //        {
-    //            Console.WriteLine("He is lie.");
-    //        }
-    //        else
-    //        {
-    //            Console.WriteLine("He is tell the truth.");
-    //        }
+    //        alert.Alert();
     //    }
     //}
 
 
+    //  implement DIP
 
-    //implement DIP
-    internal interface ILieDetector
+    internal interface IAlert
     {
-        public bool Analyzer(string info);
+        public void Alert();
     }
-    internal class VoiceAnalyzer : ILieDetector
+    internal class SirenAlert : IAlert
     {
-        public bool Analyzer(string info)
+        public void Alert()
         {
-            return info.Contains("lie");
+            Console.WriteLine("Siren detects danger!");
         }
     }
 
-    internal class ThermalScanner : ILieDetector
+    internal class DroneDispatchAlert : IAlert
     {
-        public bool Analyzer(string info)
+        public void Alert()
         {
-            return info.Contains("pressure");
+            Console.WriteLine("Drone danger detects!");
         }
     }
 
-    internal class TerroristInterrogationUnit()
+    internal class BaseDefenseController 
     {
-        private ILieDetector analyze;
+        private IAlert alert;
 
-        public void StartInvestigate(string info)
+        public void StartAlert()
         {
-            if (analyze.Analyzer(info))
-            {
-                Console.WriteLine("He is lie.");
-            }
-            else
-            {
-                Console.WriteLine("He is not lie.");
-            }
+            alert.Alert();
         }
     }
-
 }
